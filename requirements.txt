@@ -1,5 +1,4 @@
 docx==0.2.4
-easygui==0.98.2
 python_docx==0.8.11
 Flask==2.1.0
 gunicorn==20.1.0
