@@ -5,10 +5,10 @@ import tempfile
 
 app = Flask(__name__)
 
-# @app.route("/convert_doc_to_pdf", methods=['POST'])
-# def convert_doc_to_pdf():
-#     print("Converting Document To PDF")
-
+@app.route("/convert_doc_to_pdf")
+def convert_doc_to_pdf():
+    print("Converting Document To PDF")
+    return "Converting Document To PDF"
 #     if request.method == 'POST':
 #         #Create a temporary file for the document
 #         file_name = next(tempfile._get_candidate_names())
