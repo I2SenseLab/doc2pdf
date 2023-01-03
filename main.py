@@ -39,7 +39,8 @@ def convert_doc_to_pdf():
 @app.route("/")
 def running():
 
-    return "Request Recieved"
+    name = os.environ.get("NAME", "World")
+    return "Hello {}!".format(name)
 
 
 if __name__ == "__main__":
