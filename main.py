@@ -15,12 +15,9 @@ def convert_doc_to_pdf():
         file_path = file_name
         print("Made File Path: ",file_path)
         try:
-            if 'file' not in request.files:
 
-                return "No File Uploaded" + request.url
-            else:
-                f= request.files['file']
-                f.save(file_path)
+            f= request.files
+            f.save(file_path)
         except:
             print("Failed to Save File")
             return "File Upload Failed"
