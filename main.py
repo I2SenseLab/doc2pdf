@@ -36,6 +36,11 @@ def convert_doc_to_pdf():
     else:
         return "Not a post request"
 
+@app.route("/")
+def running():
+
+    return "Request Recieved"
+
 
 if __name__ == "__main__":
     content = ("MDAcert.pem","MDAkey.pem")
