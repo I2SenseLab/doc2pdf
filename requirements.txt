@@ -2,5 +2,3 @@ docx==0.2.4
 python_docx==0.8.11
 Flask==2.1.0
 gunicorn==20.1.0
-Markup==0.2
-aspose-words==22.6.0

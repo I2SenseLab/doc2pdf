@@ -5,19 +5,24 @@ import tempfile
 
 app = Flask(__name__)
 
-# @app.route("/convert_doc_to_pdf", methods=['POST'])
-# def convert_doc_to_pdf():
-#     print("Converting Document To PDF")
+@app.route("/convert_doc_to_pdf", methods = ['GET', 'POST'])
+def convert_doc_to_pdf():
+    print("Converting Document To PDF")
 
-#     if request.method == 'POST':
-#         #Create a temporary file for the document
-#         file_name = next(tempfile._get_candidate_names())
-#         file_path = os.path.join(tempfile.gettempdir(), file_name)
+    if request.method == 'POST':
+        #Create a temporary file for the document
+        file_name = next(tempfile._get_candidate_names())
+        file_path = os.path.join(tempfile.gettempdir(), file_name)
+        print("Made File Path: ",file_path)
+        f= request.files['file']
+        f.save(file_path)
+        print("Save File")
+        return "POST MADE"
+    else:
+       
 
-#         f= request.files['file']
-#         f.save(file_path)
 
-
+        return "This function expects a POST of a file"
 #         try:
 #             file_path = convert_to(tempfile.gettempdir(),file_path)
 #         except:
