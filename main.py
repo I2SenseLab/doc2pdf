@@ -12,15 +12,15 @@ def convert_doc_to_pdf():
     if request.method == 'POST':
         return "POST MADE"
     else:
-        return "GET MADE"
+       
 #         #Create a temporary file for the document
-#         file_name = next(tempfile._get_candidate_names())
-#         file_path = os.path.join(tempfile.gettempdir(), file_name)
+        file_name = next(tempfile._get_candidate_names())
+        file_path = os.path.join(tempfile.gettempdir(), file_name)
 
-#         f= request.files['file']
-#         f.save(file_path)
+        f= request.files['file']
+        f.save(file_path)
 
-
+        return "This function expects a POST of a file"
 #         try:
 #             file_path = convert_to(tempfile.gettempdir(),file_path)
 #         except:
