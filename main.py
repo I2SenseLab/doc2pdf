@@ -16,10 +16,29 @@ def convert_doc_to_pdf():
         print("Made File Path: ",file_path)
         try:
             if 'file' not in request.files:
-                return "No File Uploaded" + request.url
+                print("File Not in File Request")
+                return "No File Uploaded Recognized: " + request.files
             else:
+                print("Saving File")
                 f= request.files['file']
+                print("Saving File2")
                 f.save(file_path)
+
+                try:
+                    file_path = "BADPDF.pdf"
+                    #file_path = convert_to(tempfile.gettempdir(),file_path)
+                except:
+                    file_path = "BADPDF.pdf"
+
+                response = send_file(
+                    file_path,
+                    mimetype='image/png',
+                    as_attachment=True,
+                    download_name='file.pdf'
+                )
+
+                return response
+
         except:
             print("Failed to Save File")
             return "File Upload Failed"
@@ -31,17 +50,9 @@ def convert_doc_to_pdf():
 
 
         return "This function expects a POST of a file"
-#         try:
-#             file_path = convert_to(tempfile.gettempdir(),file_path)
-#         except:
-#             file_path = "BADPDF.pdf"
 
-#         response = send_file(
-#             file_path,
-#             mimetype='image/png',
-#             as_attachment=True,
-#             download_name='file.pdf'
-#         )
+
+
 
 #         return response
 #     else:
