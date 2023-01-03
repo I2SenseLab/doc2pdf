@@ -33,6 +33,8 @@ def convert_doc_to_pdf():
         )
 
         return response
+    else:
+        return "Not a post request"
 
 
 if __name__ == "__main__":
