@@ -37,8 +37,8 @@ app = Flask(__name__)
 @app.route("/")
 def running():
 
-    name = os.environ.get("NAME", "World")
-    return "Hello {}!".format(name)
+
+    return "DOCX - PDF Conversion Service Running"
 
 
 if __name__ == "__main__":
