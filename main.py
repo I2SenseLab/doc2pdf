@@ -10,15 +10,16 @@ def convert_doc_to_pdf():
     print("Converting Document To PDF")
 
     if request.method == 'POST':
-        return "POST MADE"
-    else:
-       
-#         #Create a temporary file for the document
+        #Create a temporary file for the document
         file_name = next(tempfile._get_candidate_names())
         file_path = os.path.join(tempfile.gettempdir(), file_name)
 
         f= request.files['file']
         f.save(file_path)
+        return "POST MADE"
+    else:
+       
+
 
         return "This function expects a POST of a file"
 #         try:
