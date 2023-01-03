@@ -14,13 +14,15 @@ def convert_doc_to_pdf():
         file_name = next(tempfile._get_candidate_names())
         file_path = os.path.join(tempfile.gettempdir(), file_name)
         print("Made File Path: ",file_path)
-        f= request.files['file']
-        if f:
+        try:
+            f= request.files['file']
             f.save(file_path)
-            print("Save File")
-            return "File Attached"
-        else:
-            return "No File Attached"
+        except:
+            print("Failed to Save File")
+            return "File Upload Failed"
+
+        return "File Uploaded"
+
     else:
        
 
