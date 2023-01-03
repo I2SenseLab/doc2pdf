@@ -16,8 +16,11 @@ def convert_doc_to_pdf():
         print("Made File Path: ",file_path)
         f= request.files['file']
         if f:
-            f.save(file_path)
-            print("Save File")
+            print("About To Save File")
+            try:
+                f.save(file_path)
+            except:
+                print("Failed to Save File")
             return "File Attached"
         else:
             return "No File Attached"
