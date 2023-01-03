@@ -12,7 +12,7 @@ def convert_doc_to_pdf():
     if request.method == 'POST':
         #Create a temporary file for the document
         file_name = next(tempfile._get_candidate_names())
-        file_path = os.path.join(tempfile.gettempdir(), file_name)
+        file_path = file_name
         print("Made File Path: ",file_path)
         try:
             f= request.files['file']
