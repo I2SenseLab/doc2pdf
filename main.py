@@ -15,9 +15,12 @@ def convert_doc_to_pdf():
         file_path = os.path.join(tempfile.gettempdir(), file_name)
         print("Made File Path: ",file_path)
         f= request.files['file']
-        f.save(file_path)
-        print("Save File")
-        return "POST MADE"
+        if f:
+            f.save(file_path)
+            print("Save File")
+            return "File Attached"
+        else:
+            return "No File Attached"
     else:
        
 
