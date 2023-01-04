@@ -21,7 +21,6 @@ def convert_doc_to_pdf():
             else:
                 print("Saving File")
                 f= request.files['file']
-                print("Saving File2")
                 f.save(file_path)
 
                 try:
@@ -30,6 +29,7 @@ def convert_doc_to_pdf():
                     print("Converted File Path ",file_path)
                 except:
                     file_path = "BADPDF.pdf"
+                    print("Excepted File Converion Failed")
 
                 response = send_file(
                     file_path,
