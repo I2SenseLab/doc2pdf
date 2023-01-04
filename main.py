@@ -12,7 +12,7 @@ def convert_doc_to_pdf():
     if request.method == 'POST':
         #Create a temporary file for the document
         file_name = next(tempfile._get_candidate_names())
-        file_path = file_name + ".docx"
+        file_path = os.path.abspath(file_name + ".docx")
         print("Made File Path: ",file_path)
         try:
             if 'file' not in request.files:
