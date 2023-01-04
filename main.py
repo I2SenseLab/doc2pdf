@@ -12,7 +12,7 @@ def convert_doc_to_pdf():
     if request.method == 'POST':
         #Create a temporary file for the document
         file_name = next(tempfile._get_candidate_names())
-        file_path = file_name
+        file_path = file_name + ".docx"
         print("Made File Path: ",file_path)
         try:
             if 'file' not in request.files:
@@ -25,7 +25,7 @@ def convert_doc_to_pdf():
 
                 try:
                     #file_path = "BADPDF.pdf"
-                    file_path = convert_to(".",file_name) + ".pdf"
+                    file_path = convert_to(".",file_name)
                     print("Converted File Name ",file_name)
                 except:
                     file_path = "BADPDF.pdf"
