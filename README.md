@@ -6,7 +6,7 @@ Invoke-WebRequest -Method POST -Uri https://doc2pdf-3yvuhaorjq-uc.a.run.app/conv
 
 Invoke-WebRequest -Uri https://doc2pdf-3yvuhaorjq-uc.a.run.app
 
-$FilePath = "MakeMeAPDF.docx";
+$FilePath = "FL2F WS - Reduced Flow.docx";
 $URL = "https://doc2pdf-3yvuhaorjq-uc.a.run.app/convert_doc_to_pdf";
 
 $fileBytes = [System.IO.File]::ReadAllBytes($FilePath);
@@ -16,7 +16,7 @@ $LF = "`r`n";
 
 $bodyLines = ( 
     "--$boundary",
-    "Content-Disposition: form-data; name=`"file`"; filename=`"MakeMeAPDF.docx`"",
+    "Content-Disposition: form-data; name=`"file`"; filename=`"FL2F WS - Reduced Flow.docx`"",
     "Content-Type: application/octet-stream$LF",
     $fileEnc,
     "--$boundary--$LF" 
