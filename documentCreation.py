@@ -41,8 +41,8 @@ def libreoffice_exec():
         print(sys.platform)
     return 'libreoffice'
 
-def convert_to(folder,source,timeout=None):
-    args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', folder, source]
+def convert_to(source,timeout=None):
+    args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', source]
  
     process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
     print(process)

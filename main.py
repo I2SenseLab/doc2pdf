@@ -25,7 +25,7 @@ def convert_doc_to_pdf():
 
                 try:
                     #file_path = "BADPDF.pdf"
-                    file_path = convert_to(".",file_name)
+                    file_path = convert_to(file_path)
                     print("Converted File Name ",file_name)
                 except:
                     file_path = "BADPDF.pdf"
