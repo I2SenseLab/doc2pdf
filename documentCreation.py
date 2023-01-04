@@ -45,7 +45,7 @@ def convert_to(folder,source,timeout=None):
     args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', folder, source]
  
     process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
-
+    print(process)
     filename = re.search('-> (.*?) using filter', process.stdout.decode())
     print(filename)
     return filename.group(1)
