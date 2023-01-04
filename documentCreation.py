@@ -43,10 +43,11 @@ def libreoffice_exec():
 
 def convert_to(folder,source,timeout=None):
     args = [libreoffice_exec(), '--headless', '--convert-to', 'pdf', '--outdir', folder, source]
-
+    print("1")
     process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=timeout)
+    print("2")
     filename = re.search('-> (.*?) using filter', process.stdout.decode())
-
+    print("3")
     return filename.group(1)
 
 def processDocument(docFile,replacements,participants):
