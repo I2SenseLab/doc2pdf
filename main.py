@@ -2,7 +2,7 @@ from flask import Flask, request, send_file
 from documentCreation import convert_to
 import os 
 import tempfile
-
+import traceback
 app = Flask(__name__)
 
 @app.route("/convert_doc_to_pdf", methods = ['GET', 'POST'])
@@ -12,24 +12,28 @@ def convert_doc_to_pdf():
     if request.method == 'POST':
         #Create a temporary file for the document
         file_name = next(tempfile._get_candidate_names())
-        file_path = file_name
+        file_path = file_name + ".docx"
         print("Made File Path: ",file_path)
         try:
             if 'file' not in request.files:
                 print("File Not in File Request")
-                return "No File Uploaded Recognized: " + request.files
+                return "No File Uploaded Recognized: " + request
             else:
-                print("Saving File")
+                print("Saving File From Request: ", file_path)
                 f= request.files['file']
-                print("Saving File2")
                 f.save(file_path)
 
                 try:
-                    file_path = "BADPDF.pdf"
-                    #file_path = convert_to(tempfile.gettempdir(),file_path)
+                    #file_path = "BADPDF.pdf"
+                    file_path = convert_to(".",file_name)
+                    print("Converted File Name ",file_name)
                 except:
                     file_path = "BADPDF.pdf"
+                    traceback.print_exc()
+                    print("Excepted File Converion Failed")
 
+
+                print("Returning the following file, ", file_path)
                 response = send_file(
                     file_path,
                     mimetype='image/png',
@@ -42,8 +46,6 @@ def convert_doc_to_pdf():
         except:
             print("Failed to Save File")
             return "File Upload Failed"
-
-        return "File Uploaded"
 
     else:
        

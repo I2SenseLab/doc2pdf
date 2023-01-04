@@ -11,17 +11,17 @@ WORKDIR $APP_HOME
 COPY . ./
 
 
-# RUN apt-get update && \
-# 	apt-get -y -q install \
-# 		libreoffice \
-# 		libreoffice-writer \
-# 		ure \
-# 		libreoffice-core \
-# 		libreoffice-common \
-# 		fonts-opensymbol && \
-# 	apt-get -y -q remove libreoffice-gnome && \
-# 	apt -y autoremove && \
-# 	rm -rf /var/lib/apt/lists/*
+RUN apt-get update && \
+	apt-get -y -q install \
+		libreoffice \
+		libreoffice-writer \
+		ure \
+		libreoffice-core \
+		libreoffice-common \
+		fonts-opensymbol && \
+	apt-get -y -q remove libreoffice-gnome && \
+	apt -y autoremove && \
+	rm -rf /var/lib/apt/lists/*
 
 
 # Install production dependencies.
