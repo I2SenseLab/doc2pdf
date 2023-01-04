@@ -12,7 +12,7 @@ def convert_doc_to_pdf():
     if request.method == 'POST':
         #Create a temporary file for the document
         file_name = next(tempfile._get_candidate_names())
-        file_path = os.path.join(tempfile.gettempdir(), file_name)
+        file_path = os.path.join(".", file_name)
         print("Made File Path: ",file_path)
         try:
             if 'file' not in request.files:
@@ -25,15 +25,15 @@ def convert_doc_to_pdf():
 
                 try:
                     #file_path = "BADPDF.pdf"
-                    file_path = convert_to(tempfile.gettempdir(),file_path)
-                    print("Converted File Path ",file_path)
+                    file_path = convert_to(".",file_name)
+                    print("Converted File Name ",file_name)
                 except:
                     file_path = "BADPDF.pdf"
                     traceback.print_exc()
                     print("Excepted File Converion Failed")
 
                 response = send_file(
-                    file_path,
+                    file_name + ".pdf",
                     mimetype='image/png',
                     as_attachment=True,
                     download_name='file.pdf'
