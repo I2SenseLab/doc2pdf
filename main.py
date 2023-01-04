@@ -22,9 +22,10 @@ def convert_doc_to_pdf():
                 print("Saving File From Request: ", file_path)
                 f= request.files['file']
                 f.save(file_path)
-
+                print("Validating the File has been saved: ", os.path.exists(file_path))
                 try:
                     #file_path = "BADPDF.pdf"
+                    
                     file_path = convert_to(file_path)
                     print("Converted File Name ",file_path)
                 except:
