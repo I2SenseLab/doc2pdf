@@ -32,8 +32,10 @@ def convert_doc_to_pdf():
                     traceback.print_exc()
                     print("Excepted File Converion Failed")
 
+
+                print("Returning the following file, ", file_path)
                 response = send_file(
-                    file_name + ".pdf",
+                    file_path + ".pdf",
                     mimetype='image/png',
                     as_attachment=True,
                     download_name='file.pdf'
