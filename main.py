@@ -17,7 +17,7 @@ def convert_doc_to_pdf():
         try:
             if 'file' not in request.files:
                 print("File Not in File Request")
-                return "No File Uploaded Recognized: " + request.files
+                return "No File Uploaded Recognized: " + request
             else:
                 print("Saving File")
                 f= request.files['file']
@@ -25,8 +25,8 @@ def convert_doc_to_pdf():
                 f.save(file_path)
 
                 try:
-                    file_path = "BADPDF.pdf"
-                    #file_path = convert_to(tempfile.gettempdir(),file_path)
+                    #file_path = "BADPDF.pdf"
+                    file_path = convert_to(tempfile.gettempdir(),file_path)
                 except:
                     file_path = "BADPDF.pdf"
 
@@ -42,8 +42,6 @@ def convert_doc_to_pdf():
         except:
             print("Failed to Save File")
             return "File Upload Failed"
-
-        return "File Uploaded"
 
     else:
        
