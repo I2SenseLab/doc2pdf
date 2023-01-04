@@ -2,7 +2,7 @@ from flask import Flask, request, send_file
 from documentCreation import convert_to
 import os 
 import tempfile
-
+import traceback
 app = Flask(__name__)
 
 @app.route("/convert_doc_to_pdf", methods = ['GET', 'POST'])
@@ -25,10 +25,11 @@ def convert_doc_to_pdf():
 
                 try:
                     #file_path = "BADPDF.pdf"
-                    file_path = convert_to(tempfile.gettempdir(),file_name)
+                    file_path = convert_to(tempfile.gettempdir(),file_path)
                     print("Converted File Path ",file_path)
                 except:
                     file_path = "BADPDF.pdf"
+                    traceback.print_exc()
                     print("Excepted File Converion Failed")
 
                 response = send_file(
