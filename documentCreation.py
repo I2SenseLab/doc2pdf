@@ -8,7 +8,7 @@ def libreoffice_exec():
     if sys.platform == 'darwin':
         return '/Applications/LibreOffice.app/Contents/MacOS/soffice'
     else:
-        print(sys.platform)
+        print("System Platform is: ",sys.platform)
     return 'libreoffice'
 
 def convert_to(source,timeout=None):
