@@ -23,3 +23,21 @@ $bodyLines = (
 ) -join $LF
 
 Invoke-RestMethod -Uri $URL -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines
+
+$FilePath = "test.docx";
+$URL = "https://0.0.0.0/convert_doc_to_pdf";
+
+$fileBytes = [System.IO.File]::ReadAllBytes($FilePath);
+$fileEnc = [System.Text.Encoding]::GetEncoding('UTF-8').GetString($fileBytes);
+$boundary = [System.Guid]::NewGuid().ToString(); 
+$LF = "`r`n";
+
+$bodyLines = ( 
+    "--$boundary",
+    "Content-Disposition: form-data; name=`"file`"; filename=`"test.docx`"",
+    "Content-Type: application/octet-stream$LF",
+    $fileEnc,
+    "--$boundary--$LF" 
+) -join $LF
+
+Invoke-RestMethod -Uri $URL -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines

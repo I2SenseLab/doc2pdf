@@ -49,9 +49,6 @@ def convert_doc_to_pdf():
             return "File Upload Failed"
 
     else:
-       
-
-
         return "This function expects a POST of a file"
 
 
