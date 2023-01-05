@@ -24,8 +24,13 @@ $bodyLines = (
 
 Invoke-RestMethod -Uri $URL -Method Post -ContentType "multipart/form-data; boundary=`"$boundary`"" -Body $bodyLines
 
-$FilePath = "test.docx";
-$URL = "https://0.0.0.0/convert_doc_to_pdf";
+
+
+THIS (BELOW) WORKS WITH TXT FILE
+
+$FilePath = "SmallTextTest.txt";
+$URL = "http://localhost:8080/convert_doc_to_pdf";
+
 
 $fileBytes = [System.IO.File]::ReadAllBytes($FilePath);
 $fileEnc = [System.Text.Encoding]::GetEncoding('UTF-8').GetString($fileBytes);
@@ -34,7 +39,7 @@ $LF = "`r`n";
 
 $bodyLines = ( 
     "--$boundary",
-    "Content-Disposition: form-data; name=`"file`"; filename=`"test.docx`"",
+    "Content-Disposition: form-data; name=`"file`"; filename=`"SmallTextTest.txt`"",
     "Content-Type: application/octet-stream$LF",
     $fileEnc,
     "--$boundary--$LF" 
