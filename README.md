@@ -28,7 +28,7 @@ Invoke-RestMethod -Uri $URL -Method Post -ContentType "multipart/form-data; boun
 
 THIS (BELOW) WORKS WITH TXT FILE
 
-$FilePath = "SmallTextTest.txt";
+$FilePath = "TestFile.txt";
 $URL = "http://localhost:8080/convert_doc_to_pdf";
 
 
@@ -39,7 +39,7 @@ $LF = "`r`n";
 
 $bodyLines = ( 
     "--$boundary",
-    "Content-Disposition: form-data; name=`"file`"; filename=`"SmallTextTest.txt`"",
+    "Content-Disposition: form-data; name=`"file`"; filename=`"TestFile.txt`"",
     "Content-Type: application/octet-stream$LF",
     $fileEnc,
     "--$boundary--$LF" 
