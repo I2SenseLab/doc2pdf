@@ -6,8 +6,8 @@ Invoke-WebRequest -Method POST -Uri https://doc2pdf-3yvuhaorjq-uc.a.run.app/conv
 
 Invoke-WebRequest -Uri https://doc2pdf-3yvuhaorjq-uc.a.run.app
 
-$FilePath = "FL2F WS - Reduced Flow.docx";
-$URL = "https://doc2pdf-3yvuhaorjq-uc.a.run.app/convert_doc_to_pdf";
+$FilePath = "C:\Users\devin\Desktop\Notes.docx";
+$URL = "https://localhost:8080/convert_doc_to_pdf";
 
 $fileBytes = [System.IO.File]::ReadAllBytes($FilePath);
 $fileEnc = [System.Text.Encoding]::GetEncoding('UTF-8').GetString($fileBytes);
@@ -16,7 +16,7 @@ $LF = "`r`n";
 
 $bodyLines = ( 
     "--$boundary",
-    "Content-Disposition: form-data; name=`"file`"; filename=`"FL2F WS - Reduced Flow.docx`"",
+    "Content-Disposition: form-data; name=`"file`"; filename=`"NOTES.docx`"",
     "Content-Type: application/octet-stream$LF",
     $fileEnc,
     "--$boundary--$LF" 

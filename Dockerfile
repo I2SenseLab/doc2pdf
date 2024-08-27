@@ -1,52 +1,29 @@
 # Use the official lightweight Python image.
 # https://hub.docker.com/_/python
-FROM python:3.10-slim
+FROM python:3
 
 # Allow statements and log messages to immediately appear in the Knative logs
 ENV PYTHONUNBUFFERED True
+
+RUN apt update
+RUN	apt -y -q install libreoffice
+RUN	apt -y -q install libreoffice-writer
+RUN apt -y -q install ure
+RUN apt -y -q install libreoffice-core
+RUN apt -y -q install libreoffice-common
+RUN apt -y -q install fonts-opensymbol
+RUN apt -y -q remove libreoffice-gnome
+RUN apt -y autoremove
+RUN	rm -rf /var/lib/apt/lists/*
+
+RUN adduser --home=/opt/libreoffice --disabled-password --gecos "" --shell=/bin/bash libreoffice
 
 # Copy local code to the container image.
 ENV APP_HOME /app
 WORKDIR $APP_HOME
 COPY . ./
 
-
 EXPOSE 8080
-
-RUN apt-get update && \
-	apt-get -y -q install \
-		libreoffice \
-		libreoffice-writer \
-		ure \
-		# libreoffice-java-common \
-		libreoffice-core \
-		libreoffice-common \
-		fonts-opensymbol && \
-		# #hyphen-fr \
-		# #hyphen-de \
-		# hyphen-en-us \
-		# #hyphen-it \
-		# #hyphen-ru \
-		# fonts-dejavu \
-		# fonts-dejavu-core \
-		# fonts-dejavu-extra \
-		# fonts-droid-fallback \
-		# fonts-dustin \
-		# fonts-f500 \
-		# fonts-fanwood \
-		# fonts-freefont-ttf \
-		# fonts-liberation \
-		# fonts-lmodern \
-		# fonts-lyx \
-		# fonts-sil-gentium \
-		# fonts-texgyre \
-		# fonts-tlwg-purisa && \
-	apt-get -y -q remove libreoffice-gnome && \
-	apt -y autoremove && \
-	rm -rf /var/lib/apt/lists/*
-
-RUN adduser --home=/opt/libreoffice --disabled-password --gecos "" --shell=/bin/bash libreoffice
-
 
 # Install production dependencies.
 RUN pip install --no-cache-dir -r requirements.txt
